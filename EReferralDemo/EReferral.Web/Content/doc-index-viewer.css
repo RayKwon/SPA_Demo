@@ -1,0 +1,290 @@
+﻿
+.img-btn
+{
+    cursor: pointer;
+}
+
+/* tools and tools popup */
+.tools,
+.tools-popup
+{
+    position: absolute;
+    
+    background: rgba(72, 72, 72, 0.8);
+    background: -moz-linear-gradient(top, rgba(82, 82, 82, 0.8) 0%, rgba(72, 72, 72, 0.8) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(82, 82, 82, 0.8)), color-stop(100%, rgba(72, 72, 72, 0.8))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(82, 82, 82, 0.8) 0%,rgba(72, 72, 72, 0.8) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(82, 82, 82, 0.8) 0%,rgba(72, 72, 72, 0.8) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, rgba(82, 82, 82, 0.8) 0%,rgba(72, 72, 72, 0.8) 100%); /* IE10+ */
+    background: linear-gradient(to bottom, rgba(82, 82, 82, 0.8) 0%,rgba(72, 72, 72, 0.8) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#20484848', endColorstr='#20525252',GradientType=0 ); /* IE6-8 */
+
+    -moz-box-shadow: 0 0px 2px 1px #333;
+    -webkit-box-shadow: 0 0px 2px 1px #333; 
+    box-shadow: 0 0px 2px 1px #333;
+    z-index: 1;
+}
+
+
+    .tools-popup .tool
+    {
+        width: 39px;
+        height: 33px;
+    }
+
+        .tools-popup .tool .color
+        {
+            float: left;
+            margin-top: 5px;
+            margin-left: 8px;
+            width: 21px;
+            height: 21px;
+            -moz-border-radius: 3px;
+            -webkit-border-radius: 3px;
+            border-radius: 3px;
+            border: 1px solid #A9A9A9;
+        }
+
+    .tools-popup .seperator
+    {
+        height: 2px;
+    }
+
+        .tools-popup .seperator .top
+        {
+            height: 1px;
+            width: 38px;
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .tools-popup .seperator .bottom
+        {
+            height: 1px;
+            width: 38px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+
+.tools
+{
+    /* eunhye  */
+    margin-top: 2px;
+    margin-left: -199px;
+    left: 50%;
+    min-width: 398px;
+}
+
+    .tools .tool
+    {
+        width: 38px;
+        height: 33px;
+        text-align: center;
+        /* eunhye  */
+        float: left;
+    }
+
+        .tools .tool img,
+        .tools-popup img
+        {
+            margin-top: 6px;
+            margin-right: 1px;
+        }
+
+        .tools .tool .background
+        {
+            margin-left: 7px;
+            margin-top: 5px;
+            width: 21px;
+            height: 21px;
+            background-color: #4b4b4b;
+            border: 1px solid #A9A9A9;
+            -moz-border-radius: 3px;
+            -webkit-border-radius: 3px;
+            border-radius: 3px;
+        }
+
+        .tools .tool:hover,
+        .tools-popup .tool:hover
+        {
+            background: rgba(241, 146, 116, 0.5);
+            cursor: pointer;
+        }
+
+        .tools .tool:active,
+        .tools-popup .tool:active
+        {
+            background: rgba(164, 81, 55, 0.5);
+        }
+
+    .tools .selected
+    {
+        background: rgba(0, 0, 0, 0.3);
+        -moz-box-shadow: inset 0px 1px 4px 0 rgba(0, 0, 0, 0.7);
+        -webkit-box-shadow: inset 0px 1px 4px 0 rgba(0, 0, 0, 0.7);
+        box-shadow: inset 0px 1px 4px 0 rgba(0, 0, 0, 0.7);
+    }
+
+    .tools .seperator
+    {
+        width: 2px;
+        float: left;
+    }
+
+        .tools .seperator .left
+        {
+            height: 33px;
+            width: 1px;
+            float: left;
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .tools .seperator .right
+        {
+            height: 33px;
+            width: 1px;
+            float: right;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+/* contrast slider */
+#contrast-slider-container
+{
+    position: absolute;
+    z-index: 2;
+}
+
+#contrast-slider-container .scale
+{
+    width: 100%;
+    height: 100%;
+    margin-left: -7px;
+    background-image: url(../Images/contra_scale.png);
+    background-repeat: repeat-y;
+}
+
+    #contrast-slider-container .value
+    {
+        width: 30px;
+        height: 17px;
+        background-color: rgba(0, 0, 0, 0.5);
+        -moz-border-radius: 3px;
+        -webkit-border-radius: 3px;
+        border-radius: 3px;
+        margin: 0px 4px 5px 5px;
+        color: #fff;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    #contrast-slider-container .value span
+    {
+        color: #fff;
+        font-size: small;
+        vertical-align: text-top;
+    }
+
+#contrast-slider
+{
+    width: 4px;
+    height: 51px;
+    border: 0px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    margin-left: 17px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background: none rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+}
+
+    #contrast-slider .ui-slider-handle
+    {
+        width: 17px;
+        height: 7px;
+        border: 0px;
+        -moz-border-radius: 0px;
+        -webkit-border-radius: 0px;
+        border-radius: 0px;
+        margin-left: 5px;
+        margin-bottom: -3px;
+        background: url(../Images/contra_focus.png);
+        -moz-outline: none;
+        outline: none;
+    }
+
+/* compare-container */
+#compare-container
+{
+    position: absolute;
+    z-index: 2;
+    text-align: center;
+}
+
+    #compare-container .tool,
+    #compare-container .seperator
+    {
+        clear: both;
+    }
+
+/* background-container */
+#background-container    
+{
+    position: absolute;
+    z-index: 2;
+}
+
+    #background-container .tool,
+    #background-container .seperator
+    {
+        clear: both;
+    }
+
+    #background-container .tool
+    {
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+        #background-container .tool:first-child
+        {
+            border-top: none;
+        }
+
+        #background-container .tool:last-child
+        {
+            border-bottom: none;
+        }
+    
+
+
+/* Magnifier */
+.mag
+{
+    position: absolute;
+    display: none;
+}
+
+.mag-bg
+{
+    width: 200px;
+    height: 200px;
+    background-repeat: no-repeat;
+    background-color: #fff;
+    -moz-border-radius: 100%;
+    -webkit-border-radius: 100%;
+    border-radius: 100%;
+    cursor: none;
+}
+
+.mag-fg
+{
+    background-image: url(../Images/mag.png);
+    background-repeat: no-repeat;
+    width: 200px;
+    height: 200px;
+    top: 0px;
+    left: 0px;
+    position: absolute;
+    cursor: none;
+}

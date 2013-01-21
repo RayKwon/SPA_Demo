@@ -1,0 +1,85 @@
+﻿/* 
+    author: Kwon, Hyojung
+    define style for top pane
+*/
+
+nav#top {
+    position: absolute;
+    top: 0;
+    left: 0px;
+    width: 100%;
+    min-width:800px;
+    height:50px;
+    margin: 0;
+    padding:0;
+    background:#fff;
+    font-size: 12px;
+    color:#333333;
+    -moz-box-shadow: 0px 1px 10px rgba(136, 136, 136, 0.20);
+    -o-box-shadow: 0px 1px 10px rgba(136, 136, 136, 0.20);
+    -webkit-box-shadow: 0px 1px 10px rgba(136, 136, 136, 0.20);
+    box-shadow: 0px 1px 10px rgba(136, 136, 136, 0.20);
+}
+
+img#strato-logo {
+    float: left;
+    margin:17px 60px 0px 30px;
+}
+
+nav#top ul#menu {
+    float: left;
+    overflow: hidden;
+    zoom: 1;
+    height: 100%;
+    list-style-type: none;
+}
+
+    nav#top ul#menu li {
+        float: left;
+        width: 127px;
+    }
+
+        nav#top ul#menu li a {
+            display: block;
+            margin: 0;
+            padding: 20px 0px;
+            text-decoration: none;
+            color: #333333;
+            text-align: center;
+        }
+
+            nav#top ul#menu li a:hover{
+                font-weight:bold;
+            }
+
+            nav#top ul#menu li a.active-menu
+            {
+                background: url(../Images/menu_left_hover.png) left center no-repeat, url(../Images/menu_right_hover.png) right center no-repeat;
+            }
+
+nav#top ul#others {
+    float: right;
+    margin: 0 20px 0 0;
+    padding: 0;
+    overflow: hidden;
+    zoom: 1;
+    list-style-type: none;
+}
+
+    nav#top ul#others li {
+        float: left;
+    }
+
+        nav#top ul#others li span#user-name {
+            display: block;
+            margin: 0;
+            padding: 20px 0px;
+            text-align: center;
+            width: 9em;
+        }
+
+        nav#top ul#others li img#login-status {
+            display: block;
+            margin:20px 20px 0 0;
+            padding:0;
+        }

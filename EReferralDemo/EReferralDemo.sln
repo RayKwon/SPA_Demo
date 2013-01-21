@@ -1,0 +1,80 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{3ADFD05D-4AB1-4581-A043-2F558A08BFF9}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\nuget.exe = .nuget\nuget.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{37FB1BF1-6664-423A-9AC5-6890CBE1335B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EReferral.Web", "EReferral.Web\EReferral.Web.csproj", "{6D006FFF-CE46-4D53-9EDE-9A3FD7719565}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EReferral.Web.Test", "EReferral.Web.Test\EReferral.Web.Test.csproj", "{7227DF7A-FD8E-483A-AF5A-BE41EA459FBC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EReferral.Service", "EReferral.Service\EReferral.Service.csproj", "{6828E2BB-530D-4CCB-BC0A-EA0807C79D73}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EReferral.Service.Test", "EReferral.Service.Test\EReferral.Service.Test.csproj", "{8731FA8C-9936-4E4C-851E-CDF9E0CC67B3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service", "Service", "{9CA90ACE-7CB9-472A-ACCF-01078748F64B}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 5
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://3.35.177.216:8080/tfs/ktccollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = EReferral.Web\\EReferral.Web.csproj
+		SccProjectTopLevelParentUniqueName1 = EReferralDemo.sln
+		SccProjectName1 = EReferral.Web
+		SccLocalPath1 = EReferral.Web
+		SccProjectUniqueName2 = EReferral.Web.Test\\EReferral.Web.Test.csproj
+		SccProjectTopLevelParentUniqueName2 = EReferralDemo.sln
+		SccProjectName2 = EReferral.Web.Test
+		SccLocalPath2 = EReferral.Web.Test
+		SccProjectUniqueName3 = EReferral.Service\\EReferral.Service.csproj
+		SccProjectTopLevelParentUniqueName3 = EReferralDemo.sln
+		SccProjectName3 = EReferral.Service
+		SccLocalPath3 = EReferral.Service
+		SccProjectUniqueName4 = EReferral.Service.Test\\EReferral.Service.Test.csproj
+		SccProjectTopLevelParentUniqueName4 = EReferralDemo.sln
+		SccProjectName4 = EReferral.Service.Test
+		SccLocalPath4 = EReferral.Service.Test
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6D006FFF-CE46-4D53-9EDE-9A3FD7719565}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D006FFF-CE46-4D53-9EDE-9A3FD7719565}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D006FFF-CE46-4D53-9EDE-9A3FD7719565}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D006FFF-CE46-4D53-9EDE-9A3FD7719565}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7227DF7A-FD8E-483A-AF5A-BE41EA459FBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7227DF7A-FD8E-483A-AF5A-BE41EA459FBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7227DF7A-FD8E-483A-AF5A-BE41EA459FBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7227DF7A-FD8E-483A-AF5A-BE41EA459FBC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6828E2BB-530D-4CCB-BC0A-EA0807C79D73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6828E2BB-530D-4CCB-BC0A-EA0807C79D73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6828E2BB-530D-4CCB-BC0A-EA0807C79D73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6828E2BB-530D-4CCB-BC0A-EA0807C79D73}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8731FA8C-9936-4E4C-851E-CDF9E0CC67B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8731FA8C-9936-4E4C-851E-CDF9E0CC67B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8731FA8C-9936-4E4C-851E-CDF9E0CC67B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8731FA8C-9936-4E4C-851E-CDF9E0CC67B3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6D006FFF-CE46-4D53-9EDE-9A3FD7719565} = {37FB1BF1-6664-423A-9AC5-6890CBE1335B}
+		{7227DF7A-FD8E-483A-AF5A-BE41EA459FBC} = {37FB1BF1-6664-423A-9AC5-6890CBE1335B}
+		{8731FA8C-9936-4E4C-851E-CDF9E0CC67B3} = {9CA90ACE-7CB9-472A-ACCF-01078748F64B}
+		{6828E2BB-530D-4CCB-BC0A-EA0807C79D73} = {9CA90ACE-7CB9-472A-ACCF-01078748F64B}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.2\lib\NET35
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,247 @@
+﻿@{
+    ViewBag.Title = "Referral List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="search-index-wrapper" data-bind="tabBinding:tabItems, if: tabItems().length > -1">
+    <!-- Tab Header -->
+    <ul id="tabs">
+        <li>
+            <a href="#tabs-1">Search Patient</a>
+            <img class="caption-img" src="/Images/icn_search_big.png" />
+        </li>
+        <!-- ko foreach: tabItems -->
+        <li>
+            <a data-bind="attr: {href: '#'+tabId()}, text: tabTitle().length > 13 ? tabTitle().substring(0,13) : tabTitle()"></a>
+            <img data-bind="click: $root.removeTab" class="close-tab" src="/Images/icn_sear_ptbanner_close.png" />
+        </li>
+        <!-- /ko -->
+    </ul>
+
+
+    <!-- Tab Content -->
+    <div id="tabs-1">
+        <!-- Search Toolbar -->
+        <div class="patient-search-toolbar">
+            <div class="toolbar-row search-condition">
+                <ul>
+                    <li>
+                        <input id="patient-name" type="radio" name="search-criteria" value="PATIENT NAME" data-bind="checked: searchCriteria" />
+                        <label for="patient-name">PATIENT NAME</label>
+                    </li>
+                    <li>
+                        <input id="patient-id" type="radio" name="search-criteria" value="ID" data-bind="checked: searchCriteria" />
+                        <label for="patient-id">ID</label>
+                    </li>
+                    <li>
+                        <input id="patient-dob" type="radio" name="search-criteria" value="DATE OF BIRTH" data-bind="checked: searchCriteria" />
+                        <label for="patient-dob">DATE OF BIRTH</label>
+                    </li>
+                    <li>
+                        <input type="text" id="search-box" placeholder="SEARCH" data-bind="value: searchValue" />
+                    </li>
+                    <li>
+                        <input type="button" id="btn-ok" />
+                    </li>
+                </ul>
+            </div>
+            <div class="toolbar-row tags">
+                <input type="button" id="btn-search" />
+                <ul data-bind="foreach:tags">
+                    <li>
+                        <div class="tag">
+                            <label class="tag-name" data-bind="text:tagName"></label>
+                            <label class="tag-value" data-bind="text:tagValue"></label>
+                            <img class="btn-close-tag" src="/Images/icn_close_searhbox.png" />
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- table header -->
+        <table class="header-table">
+            <tr>
+                <th class="col1">PATIENT NAME</th>
+                <th class="col2">ID</th>
+                <th class="col3">AGE</th>
+                <th class="col4">GENDER</th>
+                <th class="col5">DATE OF BIRTH</th>
+            </tr>
+        </table>
+
+        <!-- Table Body -->
+        <div class="body-table-wrapper">
+            <table class="body-table">
+                <tbody data-bind="foreach : patientList">
+                    <tr data-bind="event: { dblclick: $parent.addTab}">
+                        <td class="col1" data-bind="text: patientName"></td>
+                        <td class="col2" data-bind="text: id"></td>
+                        <td class="col3" data-bind="text: age"></td>
+                        <td class="col4" data-bind="text: gender"></td>
+                        <td class="col5" data-bind="text: dateOfBirth"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- fake table to show empty rows -->
+            <table class="fake body-table">
+                <tbody>
+                    <tr>
+                        <td class="col1"></td>
+                        <td class="col2"></td>
+                        <td class="col3"></td>
+                        <td class="col4"></td>
+                        <td class="col5"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <!-- start, tab for document list by patient -->
+    <!-- ko foreach: tabItems -->
+    <div data-bind="attr:{id:tabId}">
+        <!-- document search toolbar -->
+        <div class="document-search-toolbar">
+            <div class="doc-toolbar-row">
+                <div class="float-left">
+                    <input class="view-choice-listall" type="image"
+                        data-bind="click: listClicked, 
+                                   attr: { src: isListView() ? '/Images/icn_list_press.png' : '/Images/icn_list_nor.png' }" />
+                    <img class="split" src="/Images/split_search.png" />
+                    <input class="view-choice-folder" type="image"
+                        data-bind="visible: selectedDocumentFilter() === 'ALL',
+                                   click: folderClicked,                                     
+                                   attr: { src: isListView() ? '/Images/icn_fol_nor.png' : '/Images/icn_fol_press.png' }" />
+                </div>
+                <div class="float-right">
+                    <ul>
+                        <li>
+                            <input type="text" class="date-from" data-bind="value: dateFrom" />-
+                            <input type="text" class="date-to" data-bind="value: dateTo" />
+                        </li>
+                        <li>
+                            <input type="text" class="doc-search-text" placeholder="SEARCH" 
+                                   data-bind="value: documentNameToSearch, 
+                                              valueUpdate: 'afterkeydown',
+                                              event: { keyup : getDocumentList }" />
+                        </li>
+                        <li>
+                            <input data-bind="click: getDocumentList" type="button" class="btn-doc-search" />
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="doc-toolbar-row filters">
+                <!-- ko foreach: documentFilters -->
+                <label data-bind="visible: $parent.isListView(),
+                                  text: $data, 
+                                  click:$parent.selectedDocumentFilter, 
+                                  css:{'active-filter':$parent.selectedDocumentFilter() === $data}"></label>
+                <img class="filter-split" src="/Images/split_search.png" data-bind="visible: $parent.isListView()" />
+                <!-- /ko -->
+            </div>
+        </div>
+
+        <!-- table header -->
+        <table class="header-table">
+            <tr>
+                <th class="doc-col1">TYPE</th>
+                <th class="doc-col2">DATE</th>
+                <th class="doc-col3">DOCUMENT NAME</th>
+                <th class="doc-col4">CLINIC</th>
+                <th class="doc-col5">FROM</th>
+            </tr>
+        </table>
+
+        <!-- Table Body -->
+        <div class="body-table-wrapper">
+            <table class="body-table">
+
+                <!-- ko if: isListView() -->
+                <tbody data-bind="foreach: documents">
+                        <tr data-bind="attr: { 'data-folder' : folderId }, 
+                                       if: templateName() === 'content', 
+                                       visible: $parent.isRowVisible($data)">
+                            <td class="doc-col1"><img data-bind="attr: { src : $parent.convertTypeToImage($data) }" /></td>
+                            <td class="doc-col2" data-bind="text: date"></td>
+                            <td class="doc-col3" data-bind="text: documentName"></td>
+                            <td class="doc-col4" data-bind="text: clinic"></td>
+                            <td class="doc-col5" data-bind="text: from"></td>
+                        </tr>
+                </tbody>
+                <!-- /ko -->
+
+                <!-- ko if: !isListView() -->
+                <tbody data-bind="foreach: documents">
+                    <tr data-bind="template: {name: templateName() === 'header' ? 'header-template' : 'content-template'}, 
+                                    attr: { 'data-folder' : folderId }, 
+                                    css: { 'folder-row' : templateName() === 'header', 'no-folder' : templateName() === 'header' && !folderId() }
+                                    ">
+                        
+                        <script type="text/html" id="header-template">
+                            <td colspan="5">
+                                <!-- ko if: folderId() -->
+                                    <label class="folder-date" data-bind="text: folderDate"></label>
+                                    <label class="folder-referral-name" data-bind="text: folderReferralName"></label>
+                                    <label class="folder-from" data-bind="text: folderFrom"></label>
+                                    <img class="folder-collapse" src="/Images/img_group_arr_up.png" />
+                                <!-- /ko -->
+                                <!-- ko if: !folderId() -->
+                                    <label class="no-folder-label">Without folder</label>
+                                    <img class="no-folder-collapse" src="/Images/img_nogroup_arr_up.png" />
+                                <!-- /ko -->
+                            </td>
+                        </script>
+
+                        <script type="text/html" id="content-template">
+                            <td class="doc-col1">
+                                <img data-bind="attr: { src : $parent.convertTypeToImage($data) }" /></td>
+                            <td class="doc-col2" data-bind="text: date"></td>
+                            <td class="doc-col3" data-bind="text: documentName"></td>
+                            <td class="doc-col4" data-bind="text: clinic"></td>
+                            <td class="doc-col5" data-bind="text: from"></td>
+                        </script>                        
+                    </tr>
+                </tbody>
+                <!-- /ko -->
+
+            </table>
+
+            <!-- fake table to show empty rows -->
+            <table class="fake body-table">
+                <tbody>
+                    <tr>
+                        <td class="doc-col1"></td>
+                        <td class="doc-col2"></td>
+                        <td class="doc-col3"></td>
+                        <td class="doc-col4"></td>
+                        <td class="doc-col5"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- /ko -->
+    <!-- end, tab for document list by patient -->
+
+</div>
+
+@section Styles{
+    @Styles.Render("~/Content/search-index")
+}
+@section ViewScripts{
+    @Scripts.Render("~/bundles/view/search-index")
+}
+@section DataServiceScripts{
+    @Scripts.Render("~/bundles/dataService/patient-ds")
+    @Scripts.Render("~/bundles/dataService/document-ds")
+}
+@section ViewModelScripts{
+    @Scripts.Render("~/bundles/viewModel/search-index-vm")
+}
+@section RouterScripts{
+    @Scripts.Render("~/bundles/router/search-index-router")
+}

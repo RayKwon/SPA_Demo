@@ -1,0 +1,59 @@
+﻿<!doctype html>
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/themes/redmond/css", "~/Content/css")
+    @RenderSection("Styles", required: false)    
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <nav id="top">
+        <img id="strato-logo" src="~/Images/stratocaster.png" />
+        <ul id="menu">
+            <li><a href="/referral/index" id="menu-referral">Referral Lists</a></li>
+            <li><a href="/search/index"  id="menu-search">Search</a></li>
+            <li><a href="/doc/index"  id="menu-document">Document</a></li>
+        </ul>
+        <ul id="others">
+            <li><span id="user-name">Dr. Hyo J, Kwon</span></li>
+            <li><img id="login-status" src="~/Images/icn_login.png" /></li>
+        </ul>
+    </nav>
+    <div id="main" class="clearfix">
+        @RenderBody()
+    </div>
+
+    <!-- scripts : libraries -->
+    @Scripts.Render("~/bundles/extlibs")
+    @Scripts.Render("~/bundles/intlibs")
+
+
+    <!-- scripts : shared scripts -->
+    @Scripts.Render("~/bundles/shared")
+
+    <!-- scripts : view scripts & in-house jQuery libraries -->
+    @RenderSection("ViewScripts", required:false)
+
+    <!-- scripts : data service -->
+    @RenderSection("DataServiceScripts", required:false)
+
+    <!-- scripts : models -->
+    @RenderSection("ModelScripts", required:false)
+
+    <!-- scripts : view-models -->
+    @RenderSection("ViewModelScripts", required:false)
+
+    <!-- scripts : router -->
+    @RenderSection("RouterScripts", required:false)
+</body>
+</html>

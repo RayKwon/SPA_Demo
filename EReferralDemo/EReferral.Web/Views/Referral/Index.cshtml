@@ -1,0 +1,148 @@
+﻿@{
+    ViewBag.Title = "Referral List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="referral-index-wrapper">
+
+    <div class="table-caption-wrapper">
+        <div class="caption">
+            <label class="caption-title">New Referral</label>
+            <label class="caption-total">12</label>
+        </div>
+        <div class="toolbar">
+            <input id="btn-all" name="select-status" value="all" type="radio" data-bind="checked: referralStatus" />
+            <label for="btn-all">
+                <img src="~/Images/icn_all_nor.png" />
+                <img src="~/Images/icn_all_press.png" class="selected-img" />
+            </label>
+
+            <img src="~/Images/split_search.png" />
+            <input id="btn-new" name="select-status" value="new" type="radio" data-bind="checked: referralStatus" />
+            <label for="btn-new">
+                <img src="~/Images/icn_new_nor.png" />
+                <img src="~/Images/icn_new_press.png" class="selected-img" />
+            </label>
+
+            <img src="~/Images/split_search.png" />
+            <input id="btn-edit" name="select-status" value="edit" type="radio" data-bind="checked: referralStatus" />
+            <label for="btn-edit">
+                <img src="~/Images/icn_edit_nor.png" />
+                <img src="~/Images/icn_edit_press.png" class="selected-img" />
+            </label>
+
+            <select id="days" data-bind="options: periodOption,
+     optionsText: 'optionText',
+     value: selectedPeriod,
+     optionsCaption: 'Select a period...'">
+            </select>
+            <input type="text" id="date-from"
+                data-bind="css: {
+    'date-enabled': selectedPeriod() ? selectedPeriod().optionValue == 0 : false,
+    'date-disabled': selectedPeriod() ? selectedPeriod().optionValue != 0 : true
+},
+     enable: selectedPeriod() ? selectedPeriod().optionValue == 0 : false,
+     value: dateFrom " />
+            <input type="text" id="date-to"
+                data-bind="css: {
+    'date-enabled': selectedPeriod() ? selectedPeriod().optionValue == 0 : false,
+    'date-disabled': selectedPeriod() ? selectedPeriod().optionValue != 0 : true
+},
+     enable: selectedPeriod() ? selectedPeriod().optionValue == 0 : false,
+     value: dateTo " />
+        </div>
+    </div>
+
+    <table class="header-table">
+        <tr>
+            <th class="col1">STATE</th>
+            <th class="col2">DATE</th>
+            <th class="col3">PATIENT NAME</th>
+            <th class="col4">ID</th>
+            <th class="col5">REFERRAL</th>
+            <th class="col6">CLINIC</th>
+            <th class="col7">FROM</th>
+        </tr>
+    </table>
+
+    <div class="body-table-wrapper" data-bind="resize: referralList">
+        <table class="body-table">
+            <tbody data-bind="foreach: referralList">
+                <tr>
+                    <td class="col1" data-bind="text: state"></td>
+                    <td class="col2" data-bind="text: date"></td>
+                    <td class="col3" data-bind="text: patientName"></td>
+                    <td class="col4" data-bind="text: id"></td>
+                    <td class="col5" data-bind="text: referral"></td>
+                    <td class="col6" data-bind="text: clinic"></td>
+                    <td class="col7" data-bind="text: from"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        @*fake table to show empty rows*@
+        <table id="fake" class="body-table">
+            <tbody>
+                <tr>
+                    <td class="col1"></td>
+                    <td class="col2"></td>
+                    <td class="col3"></td>
+                    <td class="col4"></td>
+                    <td class="col5"></td>
+                    <td class="col6"></td>
+                    <td class="col7"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="btn-refresh"></div>
+
+    <div class="popup">
+        <img class="pin" src="../../Images/popup_arrow.png" />
+        <ul>
+            <li>
+                <a href="#">
+                    <img src="~/Images/icn_ccd.png" />
+                    <label>Discharge Summary</label>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="~/Images/icn_jpg.png" />
+                    <label>Lab Results</label>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="~/Images/icn_pdf.png" />
+                    <label>CT Image</label>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="~/Images/icn_txt.png" />
+                    <label>MR Image</label>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+</div>
+
+
+@section Styles{
+    @Styles.Render("~/Content/referral-index")
+}
+@section ViewScripts{
+    @Scripts.Render("~/bundles/view/referral-index")
+}
+@section DataServiceScripts{
+    @Scripts.Render("~/bundles/dataService/referral-ds")
+}
+@section ViewModelScripts{
+    @Scripts.Render("~/bundles/viewModel/referral-index-vm")
+}
+@section RouterScripts{
+    @Scripts.Render("~/bundles/router/referral-index-router")
+}

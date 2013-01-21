@@ -1,0 +1,411 @@
+﻿@{
+    ViewBag.Title = "Referral List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="search-index-wrapper">
+    <!-- Tab Header -->
+    <ul id="tabs">
+        <li>
+            <a href="#tabs-1">Search Patient</a>
+            <img class="caption-img" src="~/Images/icn_search_big.png" />
+        </li>
+        <li>
+            <a href="#tabs-2">Kwon Hyojung</a>
+            <img class="close-tab" src="~/Images/icn_sear_ptbanner_close.png" />
+        </li>
+        <li>
+            <a href="#tabs-3">Park Jisung</a>
+            <img class="close-tab" src="~/Images/icn_sear_ptbanner_close.png" />
+        </li>
+    </ul>
+
+
+    <!-- Tab Content -->
+    <div id="tabs-1">
+        <!-- Search Toolbar -->
+        <div class="patient-search-toolbar">
+            <div class="toolbar-row search-condition">
+                <ul>
+                    <li>
+                        <input id="patient-name" type="radio" name="search-criteria" value="PATIENT NAME" data-bind="checked: searchCriteria" />
+                        <label for="patient-name">PATIENT NAME</label>
+                    </li>
+                    <li>
+                        <input id="patient-id" type="radio" name="search-criteria" value="ID" data-bind="checked: searchCriteria" />
+                        <label for="patient-id">ID</label>
+                    </li>
+                    <li>
+                        <input id="patient-dob" type="radio" name="search-criteria" value="DATE OF BIRTH" data-bind="checked: searchCriteria" />
+                        <label for="patient-dob">DATE OF BIRTH</label>
+                    </li>
+                    <li>
+                        <input type="text" id="search-box" placeholder="SEARCH" data-bind="value: searchValue" />
+                    </li>
+                    <li>
+                        <input type="button" id="btn-ok" />
+                    </li>
+                </ul>
+            </div>
+            <div class="toolbar-row tags">
+                <input type="button" id="btn-search" />
+                <ul data-bind="foreach:tags">
+                    <li>
+                        <div class="tag">
+                            <label class="tag-name" data-bind="text:tagName"></label>
+                            <label class="tag-value" data-bind="text:tagValue"></label>
+                            <img class="btn-close-tag" src="~/Images/icn_close_searhbox.png" />
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- table header -->
+        <table class="header-table">
+            <tr>
+                <th class="col1">PATIENT NAME</th>
+                <th class="col2">ID</th>
+                <th class="col3">AGE</th>
+                <th class="col4">GENDER</th>
+                <th class="col5">DATE OF BIRTH</th>
+            </tr>
+        </table>
+
+        <!-- Table Body -->
+        <div class="body-table-wrapper">
+            <table class="body-table">
+                <tbody data-bind="foreach : patientList">
+                    <tr>
+                        <td class="col1" data-bind="text: PatientName"></td>
+                        <td class="col2" data-bind="text: Id"></td>
+                        <td class="col3" data-bind="text: Age"></td>
+                        <td class="col4" data-bind="text: Gender"></td>
+                        <td class="col5" data-bind="text: DateOfBirth"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- fake table to show empty rows -->
+            <table class="fake body-table">
+                <tbody>
+                    <tr>
+                        <td class="col1"></td>
+                        <td class="col2"></td>
+                        <td class="col3"></td>
+                        <td class="col4"></td>
+                        <td class="col5"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="tabs-2">
+        <!-- document search toolbar -->
+        <div class="document-search-toolbar">
+            <div class="doc-toolbar-row">
+                <div class="float-left">
+                    <input class="view-choice-listall" type="image" src="~/Images/icn_list_press.png" />
+                    <img class="split" src="~/Images/split_search.png" />
+                    <input class="view-choice-folder" type="image" src="~/Images/icn_fol_nor.png" />
+                </div>
+                <div class="float-right">
+                    <ul>
+                        <li>
+                            <input type="text" class="date-from" />-
+                            <input type="text" class="date-to" />
+                        </li>
+                        <li>
+                            <input type="text" class="doc-search-text" placeholder="SEARCH" />
+                        </li>
+                        <li>
+                            <input type="button" class="btn-doc-search" />
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="doc-toolbar-row filters">
+                <label class="active-filter">ALL</label>
+                <img class="filter-split" src="~/Images/split_search.png" />
+                <label>DISCHARGE SUMMARY</label>
+                <img class="filter-split" src="~/Images/split_search.png" />
+                <label>TRANSFER SUMMARY</label>
+            </div>
+        </div>
+
+        <!-- table header -->
+        <table class="header-table">
+            <tr>
+                <th class="doc-col1">TYPE</th>
+                <th class="doc-col2">DATE</th>
+                <th class="doc-col3">DOCUMENT NAME</th>
+                <th class="doc-col4">CLINIC</th>
+                <th class="doc-col5">FROM</th>
+            </tr>
+        </table>
+
+        <!-- Table Body -->
+        <div class="body-table-wrapper">
+            <table class="body-table">
+                <tbody>
+
+                    <tr class="folder-row" data-folder="1">
+                        <td colspan="5">
+                            <label class="folder-date">2012/07/05</label>
+                            <label class="folder-referral-name">Discharge Summary Referral</label>
+                            <label class="folder-from">From Han Clinic, Dr. Kang</label>
+                            <img class="folder-collapse" src="~/Images/img_group_arr_up.png" />
+                        </td>
+                    </tr>
+                    <tr data-folder="1">
+                        <td class="doc-col1">
+                            <img src="~/Images/icn_jpg.png" /></td>
+                        <td class="doc-col2">1980/05/01</td>
+                        <td class="doc-col3">Discharge summary</td>
+                        <td class="doc-col4">Small Hospital</td>
+                        <td class="doc-col5">Dr. Kim</td>
+                    </tr>
+                    <tr data-folder="1">
+                        <td class="doc-col1">
+                            <img src="~/Images/icn_txt.png" /></td>
+                        <td class="doc-col2">1980/05/02</td>
+                        <td class="doc-col3">Discharge summary</td>
+                        <td class="doc-col4">Small Hospital</td>
+                        <td class="doc-col5">Dr. Kim</td>
+                    </tr>
+                    <tr data-folder="1">
+                        <td class="doc-col1">
+                            <img src="~/Images/icn_pdf.png" /></td>
+                        <td class="doc-col2">1980/05/03</td>
+                        <td class="doc-col3">Discharge summary</td>
+                        <td class="doc-col4">Small Hospital</td>
+                        <td class="doc-col5">Dr. Kim</td>
+                    </tr>
+                    <tr data-folder="1">
+                        <td class="doc-col1">
+                            <img src="~/Images/icn_ccd.png" /></td>
+                        <td class="doc-col2">1980/05/04</td>
+                        <td class="doc-col3">Discharge summary</td>
+                        <td class="doc-col4">Small Hospital</td>
+                        <td class="doc-col5">Dr. Kim</td>
+                    </tr>
+                    <tr class="folder-row no-folder">
+                        <td colspan="5">
+                            <label class="no-folder-label">Without folder</label>
+                            <img class="no-folder-collapse" src="~/Images/img_nogroup_arr_up.png" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="doc-col1">
+                            <img src="~/Images/icn_jpg.png" /></td>
+                        <td class="doc-col2">1980/05/05</td>
+                        <td class="doc-col3">Discharge summary</td>
+                        <td class="doc-col4">Small Hospital</td>
+                        <td class="doc-col5">Dr. Kim</td>
+                    </tr>
+                    <tr>
+                        <td class="doc-col1">
+                            <img src="~/Images/icn_jpg.png" /></td>
+                        <td class="doc-col2">1980/05/06</td>
+                        <td class="doc-col3">Discharge summary</td>
+                        <td class="doc-col4">Small Hospital</td>
+                        <td class="doc-col5">Dr. Kim</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- fake table to show empty rows -->
+            <table class="fake body-table">
+                <tbody>
+                    <tr>
+                        <td class="doc-col1"></td>
+                        <td class="doc-col2"></td>
+                        <td class="doc-col3"></td>
+                        <td class="doc-col4"></td>
+                        <td class="doc-col5"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="tabs-3">
+        <!-- document search toolbar -->
+        <div class="document-search-toolbar">
+            <div class="doc-toolbar-row">
+                <div class="float-left">
+                    <input class="view-choice-listall" type="image" src="~/Images/icn_list_press.png" />
+                    <img class="split" src="~/Images/split_search.png" />
+                    <input class="view-choice-folder" type="image" src="~/Images/icn_fol_nor.png" />
+                </div>
+                <div class="float-right">
+                    <ul>
+                        <li>
+                            <input type="text" class="date-from date-enabled" />-
+                    <input type="text" class="date-to date-disabled" disabled="disabled" /></li>
+                        <li>
+                            <input type="text" class="doc-search-text" placeholder="SEARCH" /></li>
+                        <li>
+                            <input type="button" class="btn-doc-search" /></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="doc-toolbar-row filters">
+                <label class="active-filter">ALL</label>
+                <img class="filter-split" src="~/Images/split_search.png" />
+                <label>DISCHARGE SUMMARY</label>
+                <img class="filter-split" src="~/Images/split_search.png" />
+                <label>TRANSFER SUMMARY</label>
+            </div>
+        </div>
+
+        <!-- table header -->
+        <table class="header-table">
+            <tr>
+                <th class="doc-col1">TYPE</th>
+                <th class="doc-col2">DATE</th>
+                <th class="doc-col3">DOCUMENT NAME</th>
+                <th class="doc-col4">CLINIC</th>
+                <th class="doc-col5">FROM</th>
+            </tr>
+        </table>
+
+        <!-- Table Body -->
+        <div class="body-table-wrapper">
+            <table class="body-table">
+                <tbody>
+                    <tr class="folder-row" data-folder="1">
+                        <td colspan="5">
+                            <label class="folder-date">2012/07/05</label>
+                            <label class="folder-referral-name">Discharge Summary Referral</label>
+                            <label class="folder-from">From Han Clinic, Dr. Kang</label>
+                            <img class="folder-collapse" src="~/Images/img_group_arr_up.png" />
+                        </td>
+                    </tr>
+                    <tr data-folder="1">
+                        <td class="doc-col1">
+                            <img src="~/Images/icn_jpg.png" /></td>
+                        <td class="doc-col2">1980/05/01</td>
+                        <td class="doc-col3">Discharge summary</td>
+                        <td class="doc-col4">Small Hospital</td>
+                        <td class="doc-col5">Dr. Kim</td>
+                    </tr>
+                    <tr data-folder="1">
+                        <td class="doc-col1">
+                            <img src="~/Images/icn_txt.png" /></td>
+                        <td class="doc-col2">1980/05/02</td>
+                        <td class="doc-col3">Discharge summary</td>
+                        <td class="doc-col4">Small Hospital</td>
+                        <td class="doc-col5">Dr. Kim</td>
+                    </tr>
+                    <tr data-folder="1">
+                        <td class="doc-col1">
+                            <img src="~/Images/icn_pdf.png" /></td>
+                        <td class="doc-col2">1980/05/03</td>
+                        <td class="doc-col3">Discharge summary</td>
+                        <td class="doc-col4">Small Hospital</td>
+                        <td class="doc-col5">Dr. Kim</td>
+                    </tr>
+                    <tr data-folder="1">
+                        <td class="doc-col1">
+                            <img src="~/Images/icn_ccd.png" /></td>
+                        <td class="doc-col2">1980/05/04</td>
+                        <td class="doc-col3">Discharge summary</td>
+                        <td class="doc-col4">Small Hospital</td>
+                        <td class="doc-col5">Dr. Kim</td>
+                    </tr>
+                    <tr data-folder="1">
+                        <td class="doc-col1">
+                            <img src="~/Images/icn_jpg.png" /></td>
+                        <td class="doc-col2">1980/05/01</td>
+                        <td class="doc-col3">Discharge summary</td>
+                        <td class="doc-col4">Small Hospital</td>
+                        <td class="doc-col5">Dr. Kim</td>
+                    </tr>
+                    <tr data-folder="1">
+                        <td class="doc-col1">
+                            <img src="~/Images/icn_txt.png" /></td>
+                        <td class="doc-col2">1980/05/02</td>
+                        <td class="doc-col3">Discharge summary</td>
+                        <td class="doc-col4">Small Hospital</td>
+                        <td class="doc-col5">Dr. Kim</td>
+                    </tr>
+                    <tr data-folder="1">
+                        <td class="doc-col1">
+                            <img src="~/Images/icn_pdf.png" /></td>
+                        <td class="doc-col2">1980/05/03</td>
+                        <td class="doc-col3">Discharge summary</td>
+                        <td class="doc-col4">Small Hospital</td>
+                        <td class="doc-col5">Dr. Kim</td>
+                    </tr>
+                    <tr data-folder="1">
+                        <td class="doc-col1">
+                            <img src="~/Images/icn_ccd.png" /></td>
+                        <td class="doc-col2">1980/05/04</td>
+                        <td class="doc-col3">Discharge summary</td>
+                        <td class="doc-col4">Small Hospital</td>
+                        <td class="doc-col5">Dr. Kim</td>
+                    </tr>
+                    <tr class="folder-row no-folder">
+                        <td colspan="5">
+                            <label class="no-folder-label">Without folder</label>
+                            <img class="no-folder-collapse" src="~/Images/img_nogroup_arr_up.png" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="doc-col1">
+                            <img src="~/Images/icn_jpg.png" /></td>
+                        <td class="doc-col2">1980/05/05</td>
+                        <td class="doc-col3">Discharge summary</td>
+                        <td class="doc-col4">Small Hospital</td>
+                        <td class="doc-col5">Dr. Kim</td>
+                    </tr>
+                    <tr>
+                        <td class="doc-col1">
+                            <img src="~/Images/icn_jpg.png" /></td>
+                        <td class="doc-col2">1980/05/06</td>
+                        <td class="doc-col3">Discharge summary</td>
+                        <td class="doc-col4">Small Hospital</td>
+                        <td class="doc-col5">Dr. Kim</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- fake table to show empty rows -->
+            <table class="fake body-table">
+                <tbody>
+                    <tr>
+                        <td class="doc-col1"></td>
+                        <td class="doc-col2"></td>
+                        <td class="doc-col3"></td>
+                        <td class="doc-col4"></td>
+                        <td class="doc-col5"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+@section Styles{
+    @Styles.Render("~/Content/search-index")
+}
+@section LibraryScripts{
+    @Scripts.Render("~/bundles/jqueryui")
+}
+@section ViewScripts{
+    @Scripts.Render("~/bundles/view/search-index")
+}
+@section DataServiceScripts{
+    @Scripts.Render("~/bundles/dataService/patient-ds")
+}
+@section ModelScripts{
+}
+@section ViewModelScripts{
+    @Scripts.Render("~/bundles/viewModel/search-index-vm")
+}
+@section RouterScripts{
+    @Scripts.Render("~/bundles/router/search-index-router")
+}

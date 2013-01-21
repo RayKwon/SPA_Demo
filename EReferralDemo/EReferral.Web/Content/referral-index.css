@@ -1,0 +1,446 @@
+﻿body {
+    background: #e9eff2;
+}
+
+nav#top {
+    z-index: 5; /*in order to show bottom-shadow of top pane*/
+}
+
+#referral-index-wrapper {
+    border: dotted 0px;
+    position: absolute;
+    top: 50px;
+    bottom: 70px;
+    left: 70px;
+    right: 70px;
+    min-width: 923px;
+    font-family: Arial;
+    font-size: 12px;
+    background: #7ea9d0;
+    border-top: solid 0px;
+    border-left: solid 0px #7ea9d0;
+    border-right: solid 0px #7ea9d0;
+    border-bottom: solid 9px #7ea9d0;
+    -moz-border-radius-bottomleft: 6px;
+    -webkit-border-bottom-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    -moz-border-radius-bottomright: 6px;
+    -webkit-border-bottom-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+/*#region Table Caption */
+
+/* ===============================================
+ * Table Caption
+ * =============================================== */
+
+.table-caption-wrapper {
+    border: dotted 0px;
+    height: 40px;
+    width:100%;
+    color: #fff;
+    background: #e9eff2;
+    font-size: 24px;
+    font-family: Arial;
+    font-weight: bold;
+}
+
+.caption {
+    float:left;
+    width: 243px;
+    height: 100%;
+    background: #7ea9d0;
+    -moz-border-radius-topleft: 7px;
+    -webkit-border-top-left-radius: 7px;
+    border-top-left-radius: 7px;
+    -moz-border-radius-topright: 7px;
+    -webkit-border-top-right-radius: 7px;
+    border-top-right-radius: 7px;
+    border:dotted 0px black;
+}
+
+.caption-title {
+    border: solid 0px;
+    margin: 0;
+    float: left;
+    width: 183px;
+    height: 100%;
+    padding-left: 20px;
+    background-image: url(../Images/icn_newreferr.png);
+    background-repeat: no-repeat;
+    background-position-x: right;
+}
+
+.caption-total {
+    height: 100%;
+    width: 30px;
+    float: right;
+    margin: 0;
+    background: #5d87ae;
+    text-align: right;
+    padding-right: 10px;
+    -moz-border-radius-topright: 7px;
+    -webkit-border-top-right-radius: 7px;
+    border-top-right-radius: 7px;
+}
+
+/*#endregion */
+
+
+
+/* ===============================================
+ * All, New, Edit buttons and Calendar
+ * =============================================== */
+.toolbar {
+    border: solid 0px;
+    float: right;
+    width: 630px;
+}
+
+*+html .toolbar { 
+    width: 675px;
+}
+
+    .toolbar input {
+        border: dotted 0px;
+        margin-top: 10px;
+    }
+
+        .toolbar input[type=radio] {
+            display: none;
+        }
+
+.selected-img {
+    display: none;
+}
+
+#btn-all:checked + label img:nth-child(2) {
+    display: inline;
+}
+
+#btn-all:checked + label img:nth-child(1) {
+    display: none;
+}
+
+#btn-edit:checked + label img:nth-child(2) {
+    display: inline;
+}
+
+#btn-edit:checked + label img:nth-child(1) {
+    display: none;
+}
+
+#btn-new:checked + label img:nth-child(2) {
+    display: inline;
+}
+
+#btn-new:checked + label img:nth-child(1) {
+    display: none;
+}
+
+
+#days {
+    position: absolute;
+    top: 8px;
+    width: 188px;
+    height: 22px;
+    font-size: 10px;
+    font-weight: bold;
+    color: #fff;
+    background: #a2c0db;
+    padding-left: 10px;
+    padding-bottom: 0px;
+    margin-left: 30px;
+    border: solid 1px #5d87ae;
+    outline: none;
+}
+
+    #days option {
+        height: 20px;
+    }
+
+#date-from, #date-to {
+    width: 100px;
+    height: 22px;
+    font-size: 11px;
+    color: #fff;
+    font-weight: bold;
+    outline: none;
+    padding-left: 5px;
+    background: url(../Images/con_cal.png) no-repeat 0 0;
+}
+
+.date-disabled {
+    filter: alpha(opacity=50);
+    -moz-opacity: 0.5;
+    opacity: 0.5;
+}
+
+.date-enabled {
+    filter: alpha(opacity=100);
+    -moz-opacity: 1.0;
+    opacity: 1.0;
+}
+
+
+#date-from {
+    position: relative;
+    left: 225px;
+    top: -1px;
+}
+
+#date-to {
+    position: relative;
+    left: 218px;
+    top: -1px;
+}
+
+#ui-datepicker-div {
+    font-size: 12px;
+}
+/*this will make calendar size smaller*/
+
+
+
+
+
+/* ===============================================
+ * Table
+ * =============================================== */
+.header-table {
+    height: 32px;
+    /*width: 100%;*/
+    background: #7ea9d0;
+    color: #ffffff;
+    border-right: solid 1px #7ea9d0;
+}
+
+    .header-table th {
+        text-align: left;
+        padding-left: 15px;
+        border-right: solid 0px;
+    }
+
+        .header-table th:last-child {
+            border-right: 0px;
+        }
+
+.body-table-wrapper {
+    position: absolute;
+    top: 74px; /* sum of heights of 'table-caption-wrapper' and 'header-table' */
+    bottom: 0;
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: #eff1f2;
+    border-left: solid 1px #7ea9d0;
+    border-right: solid 0px #7ea9d0;
+}
+
+.body-table {
+    border: dotted 0px;
+    width: 100%;
+}
+
+    .body-table tr {
+        height: 40px;
+        border-bottom: solid 1px #d7d9d9;
+        border-top: solid 1px #d7d9d9;
+    }
+
+    .body-table tbody tr:hover {
+        background: #f19274;
+        cursor: pointer;
+    }
+
+    .body-table tr:nth-child(2n) {
+        background: #eff1f2;
+    }
+
+    .body-table tr:nth-child(2n+1) {
+        background: #f4f5f6;
+    }
+
+    .body-table tr:last-child {
+        border-bottom: 0px;
+    }
+
+    .body-table td {
+        padding-left: 15px;
+        padding-top: 12px;
+        border-right: solid 1px #d7d9d9;
+    }
+
+        .body-table td:last-child {
+            border-right: 0px;
+        }
+
+#fake tbody tr {
+    cursor: default;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+
+.col2, .col3, .col4, .col5, .col6, .col7 {
+    min-width: 100px;
+}
+
+.col1 {
+    width: 5%;
+    min-width: 50px;
+}
+
+.col2 {
+    width: 10%;
+}
+
+.col3 {
+    width: 15%;
+}
+
+.col4 {
+    width: 10%;
+}
+
+.col5 {
+    width: 25%;
+}
+
+.col6 {
+    width: 20%;
+}
+
+.col7 {
+    width: 15%;
+}
+
+.status-edit {
+    color: #d2454e;
+    font-size: 10px;
+}
+
+.status-new {
+    color: #33b76a;
+    font-size: 10px;
+}
+
+
+/* ===============================================
+ * Refresh Button
+ * =============================================== */
+#btn-refresh {
+    position: absolute;
+    left: -13px;
+    top: -13px;
+    z-index: 10;
+    width: 31px;
+    height: 31px;
+    background: url(../Images/btn_refresh_nor.png);
+}
+
+    #btn-refresh:hover {
+        background: url(../Images/btn_refresh_hover.png);
+        cursor: pointer;
+    }
+
+    #btn-refresh:active {
+        background: url(../Images/btn_refresh_press.png);
+    }
+
+
+
+/* ===============================================
+ * Popup Window
+ * =============================================== */
+.pin {
+    position: absolute;
+    top: 10px;
+    left: -6px;
+    margin: 0;
+    padding: 0;
+}
+
+.popup {
+    position: absolute;
+    width: 220px;
+    /*height:300px;
+    overflow-y:auto;*/
+    background: #fff;
+    box-shadow: 2px 2px 10px #808080;
+    -webkit-box-shadow: 2px 2px 10px #808080;
+    -moz-box-shadow: 2px 2px 10px #808080;
+    z-index: 1;
+    font-size: 12px;
+    text-align: left;
+    left: 100px;
+    top: 30px;
+    display: none;
+}
+
+    .popup ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+        .popup ul li {
+            height: 25px;
+            margin: 0;
+            padding: 13px 0 0 15px;
+            border: solid 1px #e6e8e8;
+        }
+        
+         .popup ul li:hover {
+            background:rgba(239, 241, 242, 0.5);
+        }
+            .popup ul li a img {
+                margin-top:-2px;
+            }
+
+            .popup ul li a label {
+                position:absolute;
+                left:50px;
+                margin-top:0px;
+            }
+
+
+    .popup a {
+        text-decoration: none;
+        font-weight: bold;
+        display: block;
+        color:#333333;
+    }
+
+
+/* ===============================================
+ * scrollbar style for IE and WebKit
+ * =============================================== */
+.body-table-wrapper {
+    scrollbar-face-color: rgba(126, 169, 208, 0.1);
+    scrollbar-shadow-color: #c3e1fb;
+    scrollbar-darkshadow-color: #c3e1fb;
+    scrollbar-highlight-color: #c3e1fb;
+    scrollbar-3dlight-color: #c3e1fb;
+    scrollbar-track-color: #eff1f2;
+    scrollbar-arrow-color: #5d87ae;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+ 
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 5px;
+}
+ 
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px #7ea9d0; 
+    background:rgba(126, 169, 208, 0.50);
+}
+       

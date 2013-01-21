@@ -1,0 +1,580 @@
+﻿body {
+    background: #e9eff2;
+}
+
+nav#top {
+    z-index: 5; /*in order to show bottom-shadow of top pane*/
+}
+
+#search-index-wrapper {
+    position: absolute;
+    top: 50px;
+    bottom: 70px;
+    left: 70px;
+    right: 70px;
+    min-width: 823px;
+    font-family: Arial;
+    font-size: 12px;
+    background: transparent; /*transparent or same color with body*/
+    border-bottom: solid 9px #96cad5;
+    -moz-border-radius-bottomleft: 6px;
+    -webkit-border-bottom-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    -moz-border-radius-bottomright: 6px;
+    -webkit-border-bottom-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+
+/* ===============================================
+ * jQueryUI tab, datepicker control style
+ * =============================================== */
+
+.ui-tabs {
+    padding: 0px;
+    /*border: solid 1px #5fa8b8;*/
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+}
+
+.ui-tabs-nav {
+    background: #e9eff2; /*same color with body*/
+    /*background:#96cad5;*/
+    border: solid 0px !important;
+    padding-left: 0px !important;
+    /*margin-bottom: 0px !important;*/
+    -moz-border-radius-bottomright: 0;
+    -webkit-border-bottom-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.ui-tabs .ui-tabs-nav li {
+    width: 173px;
+    height: 41px;
+    color: #175866 !important;
+    font-size: 15px !important;
+    font-weight: bold !important;
+    background: #c8e7ee !important;
+    margin-bottom: 1px !important;
+    margin-right: 5px !important;
+    border-top-right-radius: 6px;
+    border-top-left-radius: 6px;
+    border-left: solid 1px #5fa8b8 !important;
+    border-right: solid 1px #5fa8b8 !important;
+    border-top: solid 1px #5fa8b8 !important;
+    border-bottom: solid 0px #5fa8b8 !important;
+}
+
+    .ui-tabs .ui-tabs-nav li:first-child {
+        font-size: 24px !important;
+        width: 243px;
+        /*border:solid 0px !important;*/
+        margin-top: 0px;
+    }
+
+    .ui-tabs .ui-tabs-nav li a {
+        /*margin-left: -5px !important;*/
+        color: #175866;
+        margin: 5px 0px 0 0px;
+    }
+
+    .ui-tabs .ui-tabs-nav li:first-child a {
+        color: #fff !important;
+        border: solid 0px;
+        padding: 0;
+        margin: 5px 0px 0 20px;
+    }
+
+    .ui-tabs .ui-tabs-nav li img.caption-img {
+        float: right;
+        margin-top: 10px;
+        margin-right: 15px;
+        cursor: pointer;
+    }
+
+    .ui-tabs .ui-tabs-nav li img.close-tab {
+        float: right;
+        margin-top: 15px;
+        margin-right: 10px;
+        cursor: pointer;
+    }
+
+    .ui-tabs .ui-tabs-nav li.ui-tabs-selected {
+        border-bottom: solid 0px !important;
+        background: #96cad5 !important;
+    }
+
+.ui-tabs .ui-tabs-panel {
+    background: #86c1ce !important;
+    border-left: solid 0px #5fa8b8 !important;
+    border-right: solid 0px #5fa8b8 !important;
+    border-top: solid 1px #96cad5 !important;
+    -moz-border-radius-topright: 6px !important;
+    -webkit-border-top-right-radius: 6px !important;
+    border-top-right-radius: 6px !important;
+    padding: 0 !important;
+    /*border:solid 0px !important;*/
+    /*width:100%;*/
+}
+
+#ui-datepicker-div {
+    font-size: 12px;
+}
+
+.ui-datepicker-header {
+    background: #6eb4c4;
+}
+
+.ui-datepicker-calendar tbody td a {
+    background: rgba(150, 202, 213, 0.50) !important;
+}
+
+
+/* ===============================================
+ * Patient Search Toolbar
+ * =============================================== */
+
+.patient-search-toolbar {
+    /*width: 100%;*/
+    height: 65px;
+    background: #96cad5;
+    border: dotted 0px;
+    border-left: solid 1px #5fa8b8;
+    border-right: solid 1px #5fa8b8;
+    border-bottom: solid 1px #5fa8b8;
+    -moz-border-radius-topright: 6px;
+    -webkit-border-top-right-radius: 6px;
+    border-top-right-radius: 6px;
+}
+
+.toolbar-row {
+    float: right;
+    border: dotted 0px;
+    margin: 7px 5px 0 0;
+    padding: 0;
+    width: 100%;
+}
+
+    .toolbar-row ul {
+        list-style: none;
+        margin: 0;
+        float: right;
+    }
+
+        .toolbar-row ul li {
+            float: left;
+        }
+
+    .toolbar-row input[type=radio] {
+        display: none;
+    }
+
+        .toolbar-row input[type=radio]:checked + label {
+            border: solid 1px #5fa8b8;
+            background: #86c1ce;
+        }
+
+    .toolbar-row input[type=text] {
+        height: 22px;
+        width: 300px;
+        margin: 0;
+        padding: 0 0 0 10px;
+        border: 0;
+        outline: none;
+    }
+
+#btn-ok {
+    background: url(/Images/icn_enter.png) no-repeat center center;
+    background-color: white;
+    border: 0;
+    outline: none;
+    display: block;
+    width: 20px;
+    height: 22px;
+}
+
+#btn-search {
+    background: url(/Images/btn_search_big.png) no-repeat center center;
+    border: 0;
+    outline: none;
+    display: block;
+    width: 75px;
+    height: 22px;
+    float: right;
+}
+
+
+.search-condition label {
+    width: 130px;
+    height: 19px;
+    color: white;
+    border: solid 1px #5fa8b8;
+    background: #66aaba;
+    display: inline-block;
+    text-align: center;
+    padding-top: 2px;
+    margin-right: 0;
+    margin-left: 0;
+    outline: none;
+}
+
+
+.tags {
+    margin-right: 5px;
+}
+
+
+.tag {
+    height: 17px;
+    color: white;
+    border: solid 1px #5fa8b8;
+    background: #a3d1db;
+    display: inline-block;
+    text-align: center;
+    padding-top: 4px;
+    padding-left: 10px;
+    margin-right: 5px;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+    .tag .tag-name {
+        color: #66aaba;
+        margin-right: 3px;
+    }
+
+.tag-name, .tag-value {
+    cursor: default;
+}
+
+.btn-close-tag {
+    border: solid 0px;
+    padding: 2px 4px 9px 10px;
+    cursor: pointer;
+}
+
+
+/* ===============================================
+ * Search Table
+ * =============================================== */
+.header-table {
+    height: 32px;
+    width: 100%;
+    background: #86c1ce;
+    color: #ffffff;
+    border-right: solid 1px #5fa8b8;
+    border-left: solid 1px #5fa8b8;
+}
+
+    .header-table th {
+        text-align: left;
+        padding-left: 15px;
+        padding-bottom: 8px;
+        border-right: solid 0px;
+    }
+
+        .header-table th:last-child {
+            border-right: 0px;
+        }
+
+.body-table-wrapper {
+    position: absolute;
+    top: 138px; /* sum of heights of tab header, 'patient-search-toolbar' and 'header-table' */
+    bottom: 0;
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: #eff1f2;
+}
+
+.body-table {
+    border: dotted 0px;
+    width: 100%;
+    border-left: solid 1px #5fa8b8;
+    border-right: solid 1px #5fa8b8;
+}
+
+    .body-table tr {
+        height: 40px;
+        border-bottom: solid 1px #d7d9d9;
+        border-top: solid 1px #d7d9d9;
+    }
+
+    .body-table tbody tr:hover {
+        background: #f19274;
+        cursor: pointer;
+    }
+
+    .body-table tr:nth-child(2n) {
+        background: #eff1f2;
+    }
+
+    .body-table tr:nth-child(2n+1) {
+        background: #f4f5f6;
+    }
+
+    .body-table tr:last-child {
+        border-bottom: 0px;
+    }
+
+    .body-table td {
+        padding-left: 15px;
+        padding-top: 12px;
+        border-right: solid 1px #d7d9d9;
+    }
+
+        .body-table td:last-child {
+            border-right: 0px;
+        }
+
+.fake tbody tr {
+    cursor: default;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+.folder-row td {
+    background: #d4e6ea;
+}
+
+.folder-date {
+    font-weight: bold;
+    font-size: 13px;
+    color: #2f6d7b;
+}
+
+.folder-referral-name {
+    margin-left: 5px;
+    font-weight: bold;
+    font-size: 13px;
+    color: #2f6d7b;
+}
+
+.folder-from {
+    margin-left: 15px;
+    font-weight: bold;
+    font-size: 13px;
+    color: #81a9b2;
+}
+
+.no-folder td {
+    background: #e0e0e0;
+}
+
+.no-folder-label {
+    font-weight: bold;
+    font-size: 13px;
+    color: #4b4b4b;
+}
+
+.folder-collapse, .no-folder-collapse {
+    float: right;
+    margin-right: 15px;
+    margin-top: 0px;
+}
+
+
+.col2, .col3, .col4, .col5 {
+    min-width: 100px;
+}
+
+.col1 {
+    width: 30%;
+}
+
+.col2 {
+    width: 25%;
+}
+
+.col3 {
+    width: 15%;
+}
+
+.col4 {
+    width: 15%;
+}
+
+.col5 {
+    width: 15%;
+}
+
+
+.doc-col2,
+.doc-col3,
+.doc-col4,
+.doc-col5 {
+    min-width: 100px;
+}
+
+.doc-col1 {
+    width: 10%;
+}
+
+.doc-col2 {
+    width: 15%;
+}
+
+.doc-col3 {
+    width: 40%;
+}
+
+.doc-col4 {
+    width: 20%;
+}
+
+.doc-col5 {
+    width: 15%;
+}
+
+
+/* ===============================================
+ * scrollbar style for IE and WebKit
+ * =============================================== */
+.body-table-wrapper {
+    scrollbar-face-color: rgba(134, 193, 206, 0.2);
+    scrollbar-shadow-color: #dfecf7;
+    scrollbar-darkshadow-color: #dfecf7;
+    scrollbar-highlight-color: #dfecf7;
+    scrollbar-3dlight-color: #dfecf7;
+    scrollbar-track-color: #f4f5f6;
+    scrollbar-arrow-color: #66aaba;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px #86c1ce;
+    background: rgba(134, 193, 206, 0.47);
+}
+
+
+/* ===============================================
+ * Document Search Toolbar
+ * =============================================== */
+
+.document-search-toolbar {
+    height: 65px;
+    background: #96cad5;
+    border: dotted 0px;
+    border-left: solid 1px #5fa8b8;
+    border-right: solid 1px #5fa8b8;
+    border-bottom: solid 1px #5fa8b8;
+    -moz-border-radius-topright: 6px;
+    -webkit-border-top-right-radius: 6px;
+    border-top-right-radius: 6px;
+}
+
+.doc-toolbar-row {
+    float: left;
+    border: dotted 0px;
+    margin: 7px 5px 0 0;
+    padding: 0;
+    width: 100%;
+    height: 22px;
+}
+
+.float-left {
+    float: left;
+    border: solid 0px;
+}
+
+.view-choice-listall,
+.view-choice-folder {
+    width: 110px;
+    outline: none;
+    border: 0px dotted;
+}
+
+.split {
+    margin: 0 7px 15px 0;
+}
+
+
+.float-right {
+    float: right;
+    border: solid 0px;
+}
+
+.date-from, .date-to {
+    width: 100px;
+    height: 22px;
+    border: dotted 0px;
+    font-family: Arial;
+    font-size: 10px;
+    color: #fff;
+    outline: none;
+    background: url(/Images/Month_Calendar.png) no-repeat 0 0;
+    margin-right: 2px;
+}
+
+.date-disabled {
+    filter: alpha(opacity=50);
+    -moz-opacity: 0.5;
+    opacity: 0.5;
+}
+
+.date-enabled {
+    filter: alpha(opacity=100);
+    -moz-opacity: 1.0;
+    opacity: 1.0;
+}
+
+.doc-search-text {
+    width: 300px;
+    height: 20px;
+    border: 0;
+    margin-right: 0;
+    display: inline;
+    padding-left: 5px;
+    outline: none;
+}
+
+.btn-doc-search {
+    background: url(/Images/btn_search.png) no-repeat 0 0;
+    width: 23px;
+    height: 22px;
+    border: 0px;
+    outline: none;
+    margin-left: 0;
+    display: inline;
+}
+
+.float-right ul {
+    display: inline;
+    list-style: none;
+    margin: 0 5px 0 0;
+    padding: 0;
+}
+
+    .float-right ul li {
+        float: left;
+        margin: 0;
+        padding: 0;
+    }
+
+.filters {
+    padding-left: 25px;
+    font-weight: bold;
+    font-size: 11px;
+    color: #ffffff;
+}
+
+.active-filter {
+    color: #39899b;
+}
+
+
+.filter-split {
+    margin: 0px 15px 0 15px;
+}

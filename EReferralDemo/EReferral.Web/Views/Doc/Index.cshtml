@@ -1,0 +1,415 @@
+﻿@{
+    ViewBag.Title = "Document Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="doc-index-wrapper">
+    <div id="patient-banner">
+        
+        <label id="name">Brams Han</label>
+        <div class="detail"><span>Patient ID:</span><label id="patientId">0001455</label></div>
+        <div class="bar"></div>
+        <div class="detail"><span>Gender:</span><label id="gender">Female</label></div>
+        <div class="bar"></div>
+        <div class="detail"><span>DOB:</span><label id="dob">6 JAN, 1985</label></div>
+        <div class="bar"></div>
+        <div class="detail"><span>Age:</span><label id="age">29</label></div>
+
+        <div id="banner-close"></div>
+
+        <div id="add-note"></div>
+
+        
+        <div id="add-note-panel">
+            <div class="header">
+                <span>need transfer summary |</span><br />
+            </div>
+            <div>
+                <textarea></textarea>
+            </div>
+            <div class="bottom">
+                <label id="add-note-date">2012/08/10 14:05</label>
+                <div id="add-note-panel-close">CLOSE</div>
+                <div id="add-note-panel-save">SAVE</div>
+            </div>
+        </div>
+        
+    </div>
+    <div id="doc-list-wrapper">
+        <div id="doc-list-expander">
+            <div id="btn-doc-list">
+                <img src="~/Images/arrow_black.png" />
+            </div>
+        </div>
+        <div id="doc-list-content">
+            <!-- Referral List -->
+            <div id="doc-list-referral-view" data-bind="visible: isReferral">
+                <!-- referral -->
+                <div class="table-wrapper doc-referral" data-bind="with: selectedReferralItem">
+                    <!-- referral header with tab -->
+                    <div class="table-header main-tab">
+                        <div class="table-header-content">
+                            <div class="font18" data-bind="text: data.referDate"></div>
+                            <div class="font18" data-bind="text: data.referName"></div>
+                            <div class="font12" ><span>From</span> <span data-bind="text: data.referDoctor"></span></div>
+                        </div>
+                        <div id="tab-more" class="sub-tab" data-bind="click: $parent.clickDocMore">
+                            <img src="~/Images/icn_more.png" /><br />
+                            MORE
+                        </div>
+                    </div>
+                    <table class="doc-referral-table">
+                        <thead>
+                            <tr>
+                                <td>
+                                    <div class="type-popup" data-bind="click: openTypeFilter">
+                                        <span class="btn-type-popup">TYPE ▼</span>
+                                        <div class="popup" data-bind="attr:{id: 'type-popup-' + data.referId}">
+                                            <img class="popup-arrow" src='../Images/popup_arrow_up.png' />
+                                            <div class="popup-content">
+                                                <ul data-bind="template: {name: 'docTypeTmpl' ,foreach: $root.docTypes}"></ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>DOCUMENT NAME</td>
+                            </tr>
+                        </thead>
+                        <tbody data-bind="foreach: filteredDocs">
+                            <tr data-bind="addDocumentOpenEvent: docId, attr:{class: ( ($index()) % 2 === 0)? 'even':'odd'}">
+                                <td data-bind="template: {name: 'docTypeColumnTmpl', data: docType}"></td>
+                                <td data-bind="text: docName"></td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="2">
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+                <!-- other referral--> 
+                <ul data-bind="foreach: otherReferralItems">
+                    <li class="table-wrapper doc-referral other-referral" data-bind="addOtherReferOpenEvent: data.referId">
+                        <div class="doc-referral-close">
+                            <div class="doc-referral-close-content">
+                                <div class="font18">1 Other Referral</div>
+                                <div class="font12">From <span data-bind="text: data.referDoctor"></span></div>
+                            </div>
+                            <div class="btn-other-refer-open" data-bind="click: $parent.clickedOpenOtherRefer">
+                                <img src="~/Images/icn_open.png" /><br />
+                                OPEN
+                            </div>
+                        </div>
+                        <div class="doc-referral-open">
+                            <div class="table-header">
+                                <div class="table-header-content">
+                                    <div class="font18" data-bind="text: data.referDate"></div>
+                                    <div class="font18" data-bind="text: data.referName"></div>
+                                    <div class="font12" ><span>From</span> <span data-bind="text: data.referDoctor"></span></div>
+                                </div>
+                                <div class="btn-other-refer-close" data-bind="click: $parent.clickedCloseOtherRefer">
+                                    <img src="~/Images/icn_close.png" /><br />
+                                    CLOSE
+                                </div>
+                            </div>
+                            <table class="doc-referral-table">
+                                <thead>
+                                    <tr>
+                                        <td>
+                                            <div class="type-popup" data-bind="click: openTypeFilter">
+                                                <span class="btn-type-popup">TYPE ▼</span>
+                                                <div class="popup" data-bind="attr:{id: 'type-popup-' + data.referId}">
+                                                    <img class="popup-arrow" src='../Images/popup_arrow_up.png' />
+                                                    <div class="popup-content">
+                                                        <ul data-bind="template: {name: 'docTypeTmpl' ,foreach: $root.docTypes}"></ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>DOCUMENT NAME</td>
+                                    </tr>
+                                </thead>
+                                <tbody data-bind="foreach: filteredDocs">
+                                    <tr data-bind="addDocumentOpenEvent: docId, attr:{class: (($index()) % 2 === 0)? 'even':'odd'}">
+                                        <td data-bind="template: {name: 'docTypeColumnTmpl', data: docType}"></td>
+                                        <td data-bind="text: docName"></td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="2">
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </li>
+                </ul>
+
+            </div>
+
+            <div id="doc-list-document-view" data-bind="visible: !isReferral()">
+                <div class="table-wrapper doc-document" data-bind="with: allDocumentItems">
+                    <div class="table-header main-tab">
+                        <div class="table-header-content">
+                            <div class="font18">All Documents</div>
+                            <div class="font12"><span data-bind="text:docDateFrom"></span> ~ <span data-bind="text:docDateTo"></span></div>
+                            <div class="view-option">
+                                <input type="image" class="option-list" data-bind="click: clickedListView, attr:{ src: isListView() ? '../Images/icn_list_press.png' : '../Images/icn_list_nor.png' }" />
+                                <img class="split" src="/Images/split_search.png" />
+                                <input type="image" class="option-folder" data-bind="click: clickedFolderView, attr:{ src: !isListView() ? '../Images/icn_fol_press.png' : '../Images/icn_fol_nor.png' }" />
+                            </div>
+                        </div>
+                        <div id="tab-refer" class="sub-tab" data-bind="click: $root.clickDocRefer">
+                            <img src="~/Images/icn_refer.png" /><br />
+                            REFER
+                        </div>
+                    </div>
+                    <div class="table-search">
+                        <div id="input-search">
+                            <input type="search" id="search" data-bind="value: documentSearchInput" />
+                        </div>
+                        <div id="btn-search">
+                            <img src="~/Images/icn_search.png" />
+                        </div>
+                    </div>
+                    <table class="doc-document-table">
+                        <thead>
+                            <tr>
+                                <td>
+                                    <div class="type-popup" data-bind="click: openTypeFilter">
+                                        <span class="btn-type-popup">TYPE ▼</span>
+                                        <div class="popup" id="type-popup-all">
+                                            <img class="popup-arrow" src='../Images/popup_arrow_up.png' />
+                                            <div class="popup-content">
+                                                <ul data-bind="template: {name: 'docTypeTmpl' ,foreach: $root.docTypes}"></ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>DATE</td>
+                                <td>DOCUMENT NAME</td>
+                            </tr>
+                        </thead>
+                        
+                        <!-- ko if: isListView() -->
+                        <tbody data-bind="foreach: filteredDocs">
+                            <tr data-bind="addDocumentOpenEvent: docId, attr:{class: ( ($index()) % 2 === 0)? 'even':'odd'}">
+                                <td data-bind="template: {name: 'docTypeColumnTmpl', data: docType}"></td>
+                                <td data-bind="text: docDate"></td>
+                                <td data-bind="text: docName"></td>
+                            </tr>
+                        </tbody>
+                        <!-- /ko -->
+
+                        <!-- ko if: !isListView() -->
+                        <tbody data-bind="foreach: folders">
+                            <tr data-bind="visible: ($parent.filteredDocsByFolder(folderId).length > 0), attr:{ class: (folderId != '')? 'folder-header':'without-header'}, collapsedFolder: folderId">
+                                <td colspan="3">
+                                    <span data-bind="text:folderDate"></span>
+                                    <span data-bind="text:folderName"></span>         
+                                    @*<span  data-bind="text: (folderId != '')? 'from ' + folderDoctor : ''"></span>*@
+                                    <div class="folder-collapse up"></div>        
+                                </td>
+                            </tr>
+                            <!-- ko foreach: $parent.filteredDocsByFolder(folderId) -->
+                            <tr data-bind="attr: { class: 'folder-' + folderId }, addDocumentOpenEvent: docId">
+                                <td data-bind="template: {name: 'docTypeColumnTmpl', data: docType}"></td>
+                                <td data-bind="text: docDate"></td>
+                                <td data-bind="text: docName"></td>   
+                            </tr>
+                            <!-- /ko -->
+                        </tbody>
+                        <!-- /ko -->
+                        <tfoot>
+                            <tr>
+                                <td colspan="3"></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Type popup template -->
+        <script id="docTypeTmpl" type="text/html">
+            <li>
+                <label>
+                    <img data-bind="attr:{src: ($parent.filterList().indexOf($data) > -1)? '../Images/icn_check.png' : '../Images/icn_uncheck.png'}" />
+                    <span data-bind="text: $data"></span>
+                    <input type="checkbox" data-bind="checked: $parent.filterList, value: $data ,attr: { name: $data}" style="display:none" />
+                </label>
+            </li>
+        </script>
+
+        <!-- Type Column templte -->
+        <script id="docTypeColumnTmpl" type="text/html">
+            <!-- ko if: ($root.docTypes.indexOf(($data.toUpperCase() === 'JPG')? 'JPEG' : $data.toUpperCase())) > -1 -->
+                <img data-bind="attr:{src: '../Images/icn_' + (($data.toLowerCase() === 'jpeg')? 'jpg' : $data.toLowerCase())  + '.png'}" />
+            <!-- /ko -->
+            <!-- ko if: (($root.docTypes.indexOf(($data.toUpperCase() === 'JPG')? 'JPEG' : $data.toUpperCase())) < 0) -->
+                <span data-bind="text:$data.toLowerCase()" ></span>
+            <!-- /ko -->
+        </script>
+       
+    </div>
+
+    <div id="doc-viewer-wrapper">
+
+        <!-- Toolbar -->
+        <div id="toolbar" class="tools" data-bind="changeToolbarStatus: selectedViewer">
+            <div id="zoom-out" class="tool" data-bind="click:clickedZoomOutBtn" title="Zoom-out" >
+                <img src="../Images/icn_zoomout.png" />
+            </div>
+            <div class="seperator">
+                <span class="left"></span>
+                <span class="right"></span>
+            </div>
+            <div id="zoom-in" class="tool" data-bind="click:clickedZoomInBtn" title="Zoom-in">
+                <img src="../Images/icn_zoomin.png" />
+            </div>
+            <div class="seperator">
+                <span class="left"></span>
+                <span class="right"></span>
+            </div>
+            <div id="restore" class="tool" data-bind="click:clickedRestoreBtn" title="Restore">
+                <img src="../Images/icn_restore.png" />
+            </div>
+            <div class="seperator">
+                <span class="left"></span>
+                <span class="right"></span>
+            </div>
+            <div id="magnify" class="tool" data-bind="click: clickedMagnifyBtn" title="Magnify">
+                <img data-bind="attr:{src: (magnifyBtnEnable())? '../Images/icn_mag.png':'../Images/icn_mag_disable.png'}" />
+            </div>
+            <div class="seperator">
+                <span class="left"></span>
+                <span class="right"></span>
+            </div>
+            <div id="move" class="tool" data-bind="click: clickedMoveBtn" title="Move">
+                <img src="../Images/icn_hand.png" />
+            </div>
+            <div class="seperator">
+                <span class="left"></span>
+                <span class="right"></span>
+            </div>
+            <div id="contrast" class="tool" data-bind="click: clickedContrastBtn, attr:{title: !($.browser.chrome)? 'Contrast\nSupport Chrome browser only.' : 'Contrast' }">
+                <img data-bind="attr:{src: !($.browser.chrome)? '../Images/icn_contra_disable.png' : '../Images/icn_contra.png' }" />
+            </div>
+            <div class="seperator">
+                <span class="left"></span>
+                <span class="right"></span>
+            </div>
+            <div id="invert" class="tool" data-bind="click: clickedInvertBtn" title="Invert">
+                <img src="../Images/icn_invert.png" />
+            </div>
+            <div class="seperator">
+                <span class="left"></span>
+                <span class="right"></span>
+            </div>
+            <div id="effect" class="tool" data-bind="click: clickedEffectBtn" title="Effect">
+                <img data-bind="attr:{src: (effectOff())? '../Images/icn_effectoff.png':'../Images/icn_effecton.png'}" />
+            </div>
+            <div class="seperator">
+                <span class="left"></span>
+                <span class="right"></span>
+            </div>
+            <div id="compare" data-bind="click: clickedCompareBtn" class="tool" title="Compare">
+                <img data-bind="attr:{ src: (isSingleView())? '../Images/icn_actual.png' : '../Images/icn_compare.png' }" />
+            </div>
+            <div class="seperator">
+                <span class="left"></span>
+                <span class="right"></span>
+            </div>
+            <div id="background" data-bind="click: clickedBackgroundBtn" class="tool">
+                <div class="background" title="Background"></div>
+            </div>
+
+        </div>
+        
+        <!-- Contrast slider -->
+        <div id="contrast-slider-container" data-bind="visible: contrastPopupVisible()" class="tools-popup">
+            <div id="contrast-slider">
+                <div class="scale"></div>
+            </div>
+            <div class="value">
+                <span id="contrast-value">1</span>
+            </div>
+        </div>
+
+        <!-- Compare -->
+        <div id="compare-container" data-bind="visible: comparePopupVisible()" class="tools-popup">
+            <div id="actual" class="tool" data-bind="click: clickedSingleView">
+                <img src="../Images/icn_actual.png" />
+            </div>
+            <div class="seperator">
+                <div class="top"></div>
+                <div class="bottom"></div>
+            </div>
+            <div id="split" class="tool" data-bind="click: clickedMultiView">
+                <img src="../Images/icn_compare.png" />
+            </div>
+        </div>
+
+        <!-- Background -->
+        <div id="background-container" data-bind="visible: backgroundPopupVisible()" class="tools-popup">
+            <ul data-bind="foreach: backgroundColors">
+                <li data-bind="attr:{id: id}, click: $parent.clickedBackgroundColor"  class="tool">
+                    <div class="color" data-bind="attr:{style: 'background-color:' + colorCode}" >
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <ul data-bind="foreach: docViewerItems, displayMultiView: isSingleView()">
+            <li class="doc-viewer-item" data-bind="bindDocViewerItem: $data, attr:{id: $root.viewerIdName + viewId}">
+                <div class="btn-thumbnail" data-bind="visible: (data().length > 1)? true:false"></div>
+                <div class="thumbnail-wrapper" data-bind="visible: (data().length > 1)? true:false">
+                    <div class="thumbnail-pre" data-bind="setThumbnailPreBtnVisible: [thumbnailScrollLeft(), thumbnailContentWidth()], click: clickedThumbnailPreBtn"></div>
+                    <div class="thumbnail-content" data-bind="setTest: thumbnailContentWidth()">
+                        <ul data-bind="template: { name: 'thumbnailItemTmpl', foreach: data() }, attr:{style: 'width :' + thumbnailContentWidth() + 'px;'} ">
+                        </ul>
+                        <script id="thumbnailItemTmpl" type="text/html">
+                            <li data-bind="click: $parent.clickedThumb,
+                                attr:{id: 'thumb-doc' + docId + '-li' + key}" >
+                                <img data-bind="attr:{src: thumbImg}, setThumbnailImage: thumbImg" />
+                            </li>
+                        </script>
+                    </div>
+                    <div class="thumbnail-next" data-bind="setThumbnailNextBtnVisible: [thumbnailScrollLeft(), thumbnailContentWidth()], click: clickedThumbnailNextBtn">
+                    </div>
+                </div>
+                <div class="doc-content-wrapper">
+                    <div class="doc-content-main" data-bind="setViewerPosition: viewerImage()">
+                        <img data-bind="attr:{src: viewerImage()}" class="content-img" />
+                        <div class="mag">
+                            <div data-bind="attr:{style: 'background-image: url(' + largeImage() + ')'}" class="mag-bg"></div>
+                            <div class="mag-fg"></div>
+                        </div>
+                    </div>
+                    <div class="btn-content btn-content-pre" data-bind="visible: contentPreBtnVisible(), click: clickedContentPreBtn"></div>                
+                    <div class="btn-content btn-content-next" data-bind="visible: contentNextBtnVisible(),  click: clickedContentNextBtn"></div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+@section Styles{
+    @Styles.Render("~/Content/doc-index")
+}
+@section ViewScripts{
+    @Scripts.Render("~/bundles/view/doc-index")
+}
+@section DataServiceScripts{
+     
+}
+@section ViewModelScripts{
+    @Scripts.Render("~/bundles/viewModel/doc-index-vm")
+}
+@section RouterScripts{
+    @Scripts.Render("~/bundles/router/doc-index-router")
+}
